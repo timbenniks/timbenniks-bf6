@@ -15,25 +15,43 @@ async function getBrowser(): Promise<Browser> {
     return browserLaunchPromise;
   }
 
-  browserLaunchPromise = chromium.launch({
-    headless: true,
-    args: [
-      '--disable-blink-features=AutomationControlled',
-      '--disable-dev-shm-usage',
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-    ],
-  });
+  browserLaunchPromise = (async () => {
+    try {
+      const browserInstance = await chromium.launch({
+        headless: true,
+        args: [
+          '--disable-blink-features=AutomationControlled',
+          '--disable-dev-shm-usage',
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-gpu',
+          '--single-process', // Helps in some server environments
+        ],
+        // Set executable path explicitly if needed (useful for server deployments)
+        // executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,
+      });
+
+      // Clean up browser on process exit
+      process.on('beforeExit', async () => {
+        if (browserInstance) {
+          await browserInstance.close();
+        }
+      });
+
+      return browserInstance;
+    } catch (error: any) {
+      // If browser isn't installed, provide helpful error message
+      if (error.message?.includes('Executable doesn\'t exist') || error.message?.includes('executable')) {
+        throw new Error(
+          'Playwright Chromium browser is not installed. Please run: npx playwright install chromium\n' +
+          'If deploying, ensure your build process includes: playwright install chromium'
+        );
+      }
+      throw error;
+    }
+  })();
 
   browser = await browserLaunchPromise;
-  
-  // Clean up browser on process exit
-  process.on('beforeExit', async () => {
-    if (browser) {
-      await browser.close();
-    }
-  });
-
   return browser;
 }
 
