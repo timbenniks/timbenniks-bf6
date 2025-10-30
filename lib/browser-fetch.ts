@@ -19,8 +19,18 @@ async function getBrowser(): Promise<Browser> {
 
   browserLaunchPromise = (async () => {
     try {
-      // Get Chromium executable path for serverless environments
-      const executablePath = await chromium.executablePath();
+      // For Vercel/serverless environments
+      // @sparticuz/chromium needs to extract browser binaries
+      // Try default first, fallback to /tmp if needed
+      let executablePath: string;
+
+      try {
+        executablePath = await chromium.executablePath();
+      } catch (error: any) {
+        // If default fails, try with explicit /tmp path for Vercel
+        console.warn('Default executablePath failed, trying /tmp:', error.message);
+        executablePath = await chromium.executablePath('/tmp/chromium');
+      }
 
       const browserInstance = await playwrightChromium.launch({
         args: [
@@ -31,6 +41,7 @@ async function getBrowser(): Promise<Browser> {
           '--disable-setuid-sandbox',
           '--disable-gpu',
           '--single-process',
+          '--disable-extensions',
         ],
         executablePath,
         headless: true,
