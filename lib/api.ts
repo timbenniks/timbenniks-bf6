@@ -1,12 +1,7 @@
-// API endpoints configuration
-const API_BASE = 'https://api.tracker.gg/api/v2/bf6/standard';
+// API endpoints configuration - using Next.js API routes to avoid CORS issues
+const API_BASE = '/api';
 // Default player ID - used as fallback if no playerId is provided
 const DEFAULT_PLAYER_ID = '1009202439087';
-// The updateHash parameter enables additional data in the response:
-// - More comprehensive stats objects with displayName, displayCategory, category fields
-// - Multiple match snapshots (deltas) showing progression over time
-// - Additional metadata like expiryDate and streams
-const UPDATE_HASH = '4B52B92031F7E041534F8A85C814734F';
 
 export interface KDRatioData {
   data: {
@@ -261,13 +256,11 @@ export interface ProfileData {
 // Client-side API functions
 export async function fetchMatches(playerId?: string, platform: string = 'origin'): Promise<MatchData> {
   const id = playerId || DEFAULT_PLAYER_ID;
-  // Map xbl to xbox for matches endpoint
-  const platformEndpoint = platform === 'xbl' ? 'xbox' : platform;
   const response = await fetch(
-    `${API_BASE}/matches/${platformEndpoint}/${id}?updateHash=${UPDATE_HASH}`,
+    `${API_BASE}/matches?playerId=${id}&platform=${platform}`,
     {
       method: 'GET',
-      credentials: 'include',
+      credentials: 'include', // Include cookies in the request
       headers: {
         'Accept': 'application/json',
       },
@@ -275,7 +268,8 @@ export async function fetchMatches(playerId?: string, platform: string = 'origin
   );
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch matches: ${response.statusText}`);
+    const error = await response.json().catch(() => ({ error: response.statusText }));
+    throw new Error(error.error || `Failed to fetch matches: ${response.statusText}`);
   }
 
   return response.json();
@@ -283,14 +277,11 @@ export async function fetchMatches(playerId?: string, platform: string = 'origin
 
 export async function fetchProfile(playerId?: string, platform: string = 'origin'): Promise<ProfileData> {
   const id = playerId || DEFAULT_PLAYER_ID;
-  // Map platform slug to API endpoint format
-  // xbl -> xbox, psn -> psn, steam -> steam, origin -> ign
-  const platformEndpoint = platform === 'xbl' ? 'xbox' : platform === 'psn' ? 'psn' : platform === 'steam' ? 'steam' : 'ign';
   const response = await fetch(
-    `${API_BASE}/profile/${platformEndpoint}/${id}`,
+    `${API_BASE}/profile?playerId=${id}&platform=${platform}`,
     {
       method: 'GET',
-      credentials: 'include',
+      credentials: 'include', // Include cookies in the request
       headers: {
         'Accept': 'application/json',
       },
@@ -298,7 +289,8 @@ export async function fetchProfile(playerId?: string, platform: string = 'origin
   );
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch profile: ${response.statusText}`);
+    const error = await response.json().catch(() => ({ error: response.statusText }));
+    throw new Error(error.error || `Failed to fetch profile: ${response.statusText}`);
   }
 
   return response.json();
@@ -306,13 +298,11 @@ export async function fetchProfile(playerId?: string, platform: string = 'origin
 
 export async function fetchWLPercentage(playerId?: string, platform: string = 'origin'): Promise<WLPercentageData> {
   const id = playerId || DEFAULT_PLAYER_ID;
-  // Map xbl to xbox for stats endpoints
-  const platformEndpoint = platform === 'xbl' ? 'xbox' : platform;
   const response = await fetch(
-    `${API_BASE}/profile/${platformEndpoint}/${id}/stats/overview/wlPercentage`,
+    `${API_BASE}/wlpercentage?playerId=${id}&platform=${platform}`,
     {
       method: 'GET',
-      credentials: 'include',
+      credentials: 'include', // Include cookies in the request
       headers: {
         'Accept': 'application/json',
       },
@@ -320,7 +310,8 @@ export async function fetchWLPercentage(playerId?: string, platform: string = 'o
   );
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch win/loss percentage: ${response.statusText}`);
+    const error = await response.json().catch(() => ({ error: response.statusText }));
+    throw new Error(error.error || `Failed to fetch win/loss percentage: ${response.statusText}`);
   }
 
   return response.json();
@@ -328,13 +319,11 @@ export async function fetchWLPercentage(playerId?: string, platform: string = 'o
 
 export async function fetchKDRatio(playerId?: string, platform: string = 'origin'): Promise<KDRatioData> {
   const id = playerId || DEFAULT_PLAYER_ID;
-  // Map xbl to xbox for stats endpoints
-  const platformEndpoint = platform === 'xbl' ? 'xbox' : platform;
   const response = await fetch(
-    `${API_BASE}/profile/${platformEndpoint}/${id}/stats/overview/kdRatio`,
+    `${API_BASE}/kdratio?playerId=${id}&platform=${platform}`,
     {
       method: 'GET',
-      credentials: 'include',
+      credentials: 'include', // Include cookies in the request
       headers: {
         'Accept': 'application/json',
       },
@@ -342,7 +331,8 @@ export async function fetchKDRatio(playerId?: string, platform: string = 'origin
   );
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch K/D ratio: ${response.statusText}`);
+    const error = await response.json().catch(() => ({ error: response.statusText }));
+    throw new Error(error.error || `Failed to fetch K/D ratio: ${response.statusText}`);
   }
 
   return response.json();
