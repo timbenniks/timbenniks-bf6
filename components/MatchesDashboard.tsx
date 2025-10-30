@@ -523,7 +523,7 @@ export default function MatchesDashboard({ data }: MatchesDashboardProps) {
                       </p>
                     </div>
                   )}
-                  {gamemode.stats.objectivesCaptured > 0 && (
+                  {(gamemode.stats.objectivesCaptured ?? 0) > 0 && (
                     <div>
                       <p className="text-xs text-gray-500 uppercase">
                         Obj Captured
@@ -597,11 +597,11 @@ export default function MatchesDashboard({ data }: MatchesDashboardProps) {
                         {kit.stats.assists || 0}
                       </span>
                     </div>
-                    {kit.stats.kdaRatio > 0 && (
+                    {(kit.stats.kdaRatio ?? 0) > 0 && (
                       <div className="flex justify-between">
                         <span className="text-gray-400">KDA</span>
                         <span className="text-purple-400 font-semibold">
-                          {kit.stats.kdaRatio.toFixed(2)}
+                          {(kit.stats.kdaRatio ?? 0).toFixed(2)}
                         </span>
                       </div>
                     )}
@@ -611,7 +611,7 @@ export default function MatchesDashboard({ data }: MatchesDashboardProps) {
                         {formatTime(kit.stats.timePlayed)}
                       </span>
                     </div>
-                    {kit.stats.deployments > 0 && (
+                    {(kit.stats.deployments ?? 0) > 0 && (
                       <div className="flex justify-between">
                         <span className="text-gray-400">Deployments</span>
                         <span className="text-yellow-400">
@@ -703,7 +703,7 @@ export default function MatchesDashboard({ data }: MatchesDashboardProps) {
                       </span>
                     </div>
                   )}
-                  {weapon.stats.multiKills > 0 && (
+                  {(weapon.stats.multiKills ?? 0) > 0 && (
                     <div className="flex justify-between">
                       <span className="text-gray-400">Multi Kills</span>
                       <span className="text-purple-400">
@@ -987,7 +987,7 @@ export default function MatchesDashboard({ data }: MatchesDashboardProps) {
                             </p>
                           </div>
                         )}
-                        {vehicle.stats.roadKills > 0 && (
+                        {(vehicle.stats.roadKills ?? 0) > 0 && (
                           <div>
                             <span className="text-gray-400">Road Kills</span>
                             <p className="text-orange-400 font-bold">
@@ -995,15 +995,18 @@ export default function MatchesDashboard({ data }: MatchesDashboardProps) {
                             </p>
                           </div>
                         )}
-                        {vehicle.stats.distanceTraveled > 0 && (
+                        {(vehicle.stats.distanceTraveled ?? 0) > 0 && (
                           <div>
                             <span className="text-gray-400">Distance</span>
                             <p className="text-blue-400">
-                              {vehicle.stats.distanceTraveled.toLocaleString()}m
+                              {(
+                                vehicle.stats.distanceTraveled ?? 0
+                              ).toLocaleString()}
+                              m
                             </p>
                           </div>
                         )}
-                        {vehicle.stats.callIns > 0 && (
+                        {(vehicle.stats.callIns ?? 0) > 0 && (
                           <div>
                             <span className="text-gray-400">Call-ins</span>
                             <p className="text-yellow-400">
@@ -1011,7 +1014,7 @@ export default function MatchesDashboard({ data }: MatchesDashboardProps) {
                             </p>
                           </div>
                         )}
-                        {vehicle.stats.assists > 0 && (
+                        {(vehicle.stats.assists ?? 0) > 0 && (
                           <div>
                             <span className="text-gray-400">Assists</span>
                             <p className="text-green-400">
@@ -1065,7 +1068,7 @@ export default function MatchesDashboard({ data }: MatchesDashboardProps) {
                             {gadget.stats.uses || 0}
                           </p>
                         </div>
-                        {gadget.stats.kills > 0 && (
+                        {(gadget.stats.kills ?? 0) > 0 && (
                           <div>
                             <span className="text-gray-400">Kills</span>
                             <p className="text-red-400 font-bold">
@@ -1073,7 +1076,7 @@ export default function MatchesDashboard({ data }: MatchesDashboardProps) {
                             </p>
                           </div>
                         )}
-                        {gadget.stats.repairs > 0 && (
+                        {(gadget.stats.repairs ?? 0) > 0 && (
                           <div>
                             <span className="text-gray-400">Repairs</span>
                             <p className="text-blue-400 font-bold">
@@ -1081,7 +1084,7 @@ export default function MatchesDashboard({ data }: MatchesDashboardProps) {
                             </p>
                           </div>
                         )}
-                        {gadget.stats.vehiclesDestroyed > 0 && (
+                        {(gadget.stats.vehiclesDestroyed ?? 0) > 0 && (
                           <div>
                             <span className="text-gray-400">
                               Vehicles Destroyed
@@ -1091,7 +1094,7 @@ export default function MatchesDashboard({ data }: MatchesDashboardProps) {
                             </p>
                           </div>
                         )}
-                        {gadget.stats.deployments > 0 && (
+                        {(gadget.stats.deployments ?? 0) > 0 && (
                           <div>
                             <span className="text-gray-400">Deployments</span>
                             <p className="text-purple-400">
@@ -1099,19 +1102,19 @@ export default function MatchesDashboard({ data }: MatchesDashboardProps) {
                             </p>
                           </div>
                         )}
-                        {gadget.stats.damageDealt > 0 && (
+                        {(gadget.stats.damageDealt ?? 0) > 0 && (
                           <div>
                             <span className="text-gray-400">Damage</span>
                             <p className="text-yellow-400">
-                              {gadget.stats.damageDealt.toLocaleString()}
+                              {(gadget.stats.damageDealt ?? 0).toLocaleString()}
                             </p>
                           </div>
                         )}
-                        {gadget.stats.timePlayed > 0 && (
+                        {(gadget.stats.timePlayed ?? 0) > 0 && (
                           <div>
                             <span className="text-gray-400">Time</span>
                             <p className="text-gray-300">
-                              {formatTime(gadget.stats.timePlayed)}
+                              {formatTime(gadget.stats.timePlayed ?? 0)}
                             </p>
                           </div>
                         )}
