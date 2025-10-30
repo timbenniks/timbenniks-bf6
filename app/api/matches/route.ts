@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { browserFetch } from '@/lib/browser-fetch';
 
 const API_BASE = 'https://api.tracker.gg/api/v2/bf6/standard';
 const UPDATE_HASH = '4B52B92031F7E041534F8A85C814734F';
@@ -46,18 +45,20 @@ export async function GET(request: NextRequest) {
     if (cookie) {
       headers['Cookie'] = cookie;
     }
-    
+
     // Also try to get cookies from query param if client sends them
     const cookieParam = searchParams.get('_cf_bm_token');
     if (cookieParam && cookie) {
       headers['Cookie'] = `${cookie}; _cf_bm_token=${cookieParam}`;
     }
 
-    // Use browser-based fetch to bypass Cloudflare bot protection
-    // This uses Playwright with a real browser, making requests look like actual browser requests
-    const response = await browserFetch(url, {
+    // Use regular fetch with enhanced headers to bypass Cloudflare
+    // If this fails with 403, Cloudflare is detecting it as a bot
+    const response = await fetch(url, {
       method: 'GET',
-      headers: headers as Record<string, string>,
+      headers,
+      // Don't follow redirects automatically (Cloudflare might redirect)
+      redirect: 'follow',
     });
 
     if (!response.ok) {

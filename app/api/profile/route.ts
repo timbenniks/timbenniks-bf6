@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { browserFetch } from '@/lib/browser-fetch';
 
 const API_BASE = 'https://api.tracker.gg/api/v2/bf6/standard';
 
@@ -53,10 +52,11 @@ export async function GET(request: NextRequest) {
       headers['Cookie'] = `${cookie}; _cf_bm_token=${cookieParam}`;
     }
 
-    // Use browser-based fetch to bypass Cloudflare bot protection
-    const response = await browserFetch(url, {
+    // Use regular fetch with enhanced headers
+    const response = await fetch(url, {
       method: 'GET',
-      headers: headers as Record<string, string>,
+      headers,
+      redirect: 'follow',
     });
 
     if (!response.ok) {
