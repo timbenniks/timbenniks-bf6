@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Battlefield 6 Stats Dashboard
 
-## Getting Started
+A beautiful, interactive dashboard for displaying your Battlefield 6 gameplay statistics using data from Tracker.gg.
 
-First, run the development server:
+## Features
 
+- 📊 **Real-time Statistics**: K/D ratio, win rate, total matches, and more
+- 📈 **Historical Charts**: Track your performance over time with interactive line charts
+- 🎮 **Gamemode Analysis**: Detailed stats for each game mode (Conquest, Breakthrough, etc.)
+- 🎯 **Class Performance**: See how you perform with each class (Assault, Engineer, etc.)
+- 🔫 **Weapon Stats**: Top weapons ranked by kills, accuracy, and more
+- 🏆 **Leaderboard Comparison**: See how you rank against other players
+
+## Setup
+
+1. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Run the development server:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Important Notes
 
-## Learn More
+⚠️ **API Authentication**: The Tracker.gg API requires browser cookies and headers to bypass Cloudflare bot protection. This means:
 
-To learn more about Next.js, take a look at the following resources:
+- The dashboard **must** be accessed from a browser (not server-side)
+- All API calls are made client-side using `fetch` with `credentials: 'include'`
+- Make sure cookies are enabled in your browser
+- The API endpoints are configured in `lib/api.ts`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Configuration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The player ID and update hash are currently hardcoded in `lib/api.ts`. To change them:
 
-## Deploy on Vercel
+1. Open `lib/api.ts`
+2. Update the `PLAYER_ID` and `UPDATE_HASH` constants
+3. The update hash can be found in the URL when viewing your matches on tracker.gg
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Next.js 14** - React framework
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **Recharts** - Data visualization
+- **Next Image** - Optimized image loading
+
+## Project Structure
+
+```
+├── app/
+│   ├── layout.tsx       # Root layout
+│   ├── page.tsx         # Main dashboard page
+│   └── globals.css      # Global styles
+├── components/
+│   ├── StatCard.tsx     # Stat display cards
+│   ├── HistoryChart.tsx # Historical data charts
+│   ├── GamemodeStats.tsx # Gamemode performance
+│   ├── KitStats.tsx     # Class/kit performance
+│   └── WeaponStats.tsx  # Weapon statistics
+└── lib/
+    └── api.ts           # API client functions
+```
+
+## License
+
+MIT
+

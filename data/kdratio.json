@@ -1,0 +1,299 @@
+{
+  "data": {
+    "history": {
+      "metadata": {
+        "key": "kdRatio",
+        "name": "K/D",
+        "description": null
+      },
+      "data": [
+        [
+          "2025-10-18T00:00:00+00:00",
+          {
+            "metadata": {},
+            "value": 0.79,
+            "displayValue": "0.79",
+            "displayType": "NumberPrecision2"
+          }
+        ],
+        [
+          "2025-10-22T00:00:00+00:00",
+          {
+            "metadata": {},
+            "value": 0.77,
+            "displayValue": "0.77",
+            "displayType": "NumberPrecision2"
+          }
+        ],
+        [
+          "2025-10-23T00:00:00+00:00",
+          {
+            "metadata": {},
+            "value": 0.95,
+            "displayValue": "0.95",
+            "displayType": "NumberPrecision2"
+          }
+        ],
+        [
+          "2025-10-24T00:00:00+00:00",
+          {
+            "metadata": {},
+            "value": 1.67,
+            "displayValue": "1.67",
+            "displayType": "NumberPrecision2"
+          }
+        ],
+        [
+          "2025-10-25T00:00:00+00:00",
+          {
+            "metadata": {},
+            "value": 1.03,
+            "displayValue": "1.03",
+            "displayType": "NumberPrecision2"
+          }
+        ],
+        [
+          "2025-10-26T00:00:00+00:00",
+          {
+            "metadata": {},
+            "value": 0.78,
+            "displayValue": "0.78",
+            "displayType": "NumberPrecision2"
+          }
+        ],
+        [
+          "2025-10-27T00:00:00+00:00",
+          {
+            "metadata": {},
+            "value": 0.72,
+            "displayValue": "0.72",
+            "displayType": "NumberPrecision2"
+          }
+        ],
+        [
+          "2025-10-29T00:00:00+00:00",
+          {
+            "metadata": {},
+            "value": 0.87,
+            "displayValue": "0.87",
+            "displayType": "NumberPrecision2"
+          }
+        ]
+      ]
+    },
+    "leaderboard": {
+      "type": "stats",
+      "attributes": {
+        "key": null
+      },
+      "metadata": {},
+      "entries": [
+        {
+          "platformInfo": {
+            "platformSlug": "origin",
+            "platformUserId": null,
+            "platformUserHandle": "Raven_OntheDark",
+            "platformUserIdentifier": "1009645270371",
+            "avatarUrl": null,
+            "additionalParameters": {}
+          },
+          "userInfo": {
+            "userId": null,
+            "isPremium": false,
+            "isVerified": false,
+            "isInfluencer": false,
+            "isPartner": false,
+            "countryCode": null,
+            "customAvatarUrl": null,
+            "customHeroUrl": null,
+            "customAvatarFrame": null,
+            "customAvatarFrameInfo": null,
+            "premiumDuration": null,
+            "socialAccounts": null,
+            "badges": null,
+            "pageviews": null,
+            "xpTier": null,
+            "isSuspicious": null
+          },
+          "metadata": {},
+          "value": {
+            "value": 1668,
+            "displayValue": "1,668.00",
+            "displayType": "NumberPrecision2"
+          },
+          "rank": {
+            "value": 1,
+            "displayValue": "1",
+            "displayType": "Number"
+          },
+          "additionalStats": null
+        },
+        {
+          "platformInfo": {
+            "platformSlug": "origin",
+            "platformUserId": null,
+            "platformUserHandle": "Strijelac",
+            "platformUserIdentifier": "3008132367",
+            "avatarUrl": null,
+            "additionalParameters": {}
+          },
+          "userInfo": {
+            "userId": null,
+            "isPremium": false,
+            "isVerified": false,
+            "isInfluencer": false,
+            "isPartner": false,
+            "countryCode": null,
+            "customAvatarUrl": null,
+            "customHeroUrl": null,
+            "customAvatarFrame": null,
+            "customAvatarFrameInfo": null,
+            "premiumDuration": null,
+            "socialAccounts": null,
+            "badges": null,
+            "pageviews": null,
+            "xpTier": null,
+            "isSuspicious": null
+          },
+          "metadata": {},
+          "value": {
+            "value": 106.47,
+            "displayValue": "106.47",
+            "displayType": "NumberPrecision2"
+          },
+          "rank": {
+            "value": 2,
+            "displayValue": "2",
+            "displayType": "Number"
+          },
+          "additionalStats": null
+        },
+        {
+          "platformInfo": {
+            "platformSlug": "origin",
+            "platformUserId": null,
+            "platformUserHandle": "_GulULugU-mAodAi",
+            "platformUserIdentifier": "1004823197001",
+            "avatarUrl": null,
+            "additionalParameters": {}
+          },
+          "userInfo": {
+            "userId": null,
+            "isPremium": false,
+            "isVerified": false,
+            "isInfluencer": false,
+            "isPartner": false,
+            "countryCode": null,
+            "customAvatarUrl": null,
+            "customHeroUrl": null,
+            "customAvatarFrame": null,
+            "customAvatarFrameInfo": null,
+            "premiumDuration": null,
+            "socialAccounts": null,
+            "badges": null,
+            "pageviews": null,
+            "xpTier": null,
+            "isSuspicious": null
+          },
+          "metadata": {},
+          "value": {
+            "value": 75.38,
+            "displayValue": "75.38",
+            "displayType": "NumberPrecision2"
+          },
+          "rank": {
+            "value": 3,
+            "displayValue": "3",
+            "displayType": "Number"
+          },
+          "additionalStats": null
+        },
+        {
+          "platformInfo": {
+            "platformSlug": "origin",
+            "platformUserId": null,
+            "platformUserHandle": "stress0rs",
+            "platformUserIdentifier": "1007703356403",
+            "avatarUrl": null,
+            "additionalParameters": {}
+          },
+          "userInfo": {
+            "userId": null,
+            "isPremium": false,
+            "isVerified": false,
+            "isInfluencer": false,
+            "isPartner": false,
+            "countryCode": null,
+            "customAvatarUrl": null,
+            "customHeroUrl": null,
+            "customAvatarFrame": null,
+            "customAvatarFrameInfo": null,
+            "premiumDuration": null,
+            "socialAccounts": null,
+            "badges": null,
+            "pageviews": null,
+            "xpTier": null,
+            "isSuspicious": null
+          },
+          "metadata": {},
+          "value": {
+            "value": 61.82,
+            "displayValue": "61.82",
+            "displayType": "NumberPrecision2"
+          },
+          "rank": {
+            "value": 4,
+            "displayValue": "4",
+            "displayType": "Number"
+          },
+          "additionalStats": null
+        },
+        {
+          "platformInfo": {
+            "platformSlug": "origin",
+            "platformUserId": null,
+            "platformUserHandle": "Melomaniac009",
+            "platformUserIdentifier": "1005012518291",
+            "avatarUrl": null,
+            "additionalParameters": {
+              "supporter_end_date": "2025-04-21T14:35:37"
+            }
+          },
+          "userInfo": {
+            "userId": null,
+            "isPremium": false,
+            "isVerified": false,
+            "isInfluencer": false,
+            "isPartner": false,
+            "countryCode": null,
+            "customAvatarUrl": null,
+            "customHeroUrl": null,
+            "customAvatarFrame": null,
+            "customAvatarFrameInfo": null,
+            "premiumDuration": null,
+            "socialAccounts": null,
+            "badges": null,
+            "pageviews": null,
+            "xpTier": null,
+            "isSuspicious": null
+          },
+          "metadata": {},
+          "value": {
+            "value": 52.41,
+            "displayValue": "52.41",
+            "displayType": "NumberPrecision2"
+          },
+          "rank": {
+            "value": 5,
+            "displayValue": "5",
+            "displayType": "Number"
+          },
+          "additionalStats": null
+        }
+      ],
+      "expiryDate": "2025-10-29T13:23:22.602083+00:00"
+    },
+    "expiryDate": "0001-01-01T00:00:00+00:00",
+    "bestMatches": null
+  }
+}

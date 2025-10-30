@@ -1,0 +1,290 @@
+{
+  "data": {
+    "history": {
+      "metadata": {
+        "key": "wlPercentage",
+        "name": "Win %",
+        "description": null
+      },
+      "data": [
+        [
+          "2025-10-18T00:00:00+00:00",
+          {
+            "metadata": {},
+            "value": 27.27,
+            "displayValue": "27.3%",
+            "displayType": "NumberPercentage"
+          }
+        ],
+        [
+          "2025-10-22T00:00:00+00:00",
+          {
+            "metadata": {},
+            "value": 35,
+            "displayValue": "35.0%",
+            "displayType": "NumberPercentage"
+          }
+        ],
+        [
+          "2025-10-23T00:00:00+00:00",
+          {
+            "metadata": {},
+            "value": 55.56,
+            "displayValue": "55.6%",
+            "displayType": "NumberPercentage"
+          }
+        ],
+        [
+          "2025-10-25T00:00:00+00:00",
+          {
+            "metadata": {},
+            "value": 85.71,
+            "displayValue": "85.7%",
+            "displayType": "NumberPercentage"
+          }
+        ],
+        [
+          "2025-10-26T00:00:00+00:00",
+          {
+            "metadata": {},
+            "value": 23.81,
+            "displayValue": "23.8%",
+            "displayType": "NumberPercentage"
+          }
+        ],
+        [
+          "2025-10-27T00:00:00+00:00",
+          {
+            "metadata": {},
+            "value": 50,
+            "displayValue": "50.0%",
+            "displayType": "NumberPercentage"
+          }
+        ],
+        [
+          "2025-10-29T00:00:00+00:00",
+          {
+            "metadata": {},
+            "value": 100,
+            "displayValue": "100.0%",
+            "displayType": "NumberPercentage"
+          }
+        ]
+      ]
+    },
+    "leaderboard": {
+      "type": "stats",
+      "attributes": {
+        "key": null
+      },
+      "metadata": {},
+      "entries": [
+        {
+          "platformInfo": {
+            "platformSlug": "origin",
+            "platformUserId": null,
+            "platformUserHandle": "ThePro_PR",
+            "platformUserIdentifier": "3008246987",
+            "avatarUrl": null,
+            "additionalParameters": {}
+          },
+          "userInfo": {
+            "userId": null,
+            "isPremium": false,
+            "isVerified": false,
+            "isInfluencer": false,
+            "isPartner": false,
+            "countryCode": null,
+            "customAvatarUrl": null,
+            "customHeroUrl": null,
+            "customAvatarFrame": null,
+            "customAvatarFrameInfo": null,
+            "premiumDuration": null,
+            "socialAccounts": null,
+            "badges": null,
+            "pageviews": null,
+            "xpTier": null,
+            "isSuspicious": null
+          },
+          "metadata": {},
+          "value": {
+            "value": 99.43,
+            "displayValue": "99.4%",
+            "displayType": "NumberPercentage"
+          },
+          "rank": {
+            "value": 1,
+            "displayValue": "1",
+            "displayType": "Number"
+          },
+          "additionalStats": null
+        },
+        {
+          "platformInfo": {
+            "platformSlug": "origin",
+            "platformUserId": null,
+            "platformUserHandle": "Vladislav-russs",
+            "platformUserIdentifier": "1000130878982",
+            "avatarUrl": null,
+            "additionalParameters": {
+              "twitch": "the_dead__"
+            }
+          },
+          "userInfo": {
+            "userId": null,
+            "isPremium": false,
+            "isVerified": false,
+            "isInfluencer": false,
+            "isPartner": false,
+            "countryCode": null,
+            "customAvatarUrl": null,
+            "customHeroUrl": null,
+            "customAvatarFrame": null,
+            "customAvatarFrameInfo": null,
+            "premiumDuration": null,
+            "socialAccounts": null,
+            "badges": null,
+            "pageviews": null,
+            "xpTier": null,
+            "isSuspicious": null
+          },
+          "metadata": {},
+          "value": {
+            "value": 98.28,
+            "displayValue": "98.3%",
+            "displayType": "NumberPercentage"
+          },
+          "rank": {
+            "value": 2,
+            "displayValue": "2",
+            "displayType": "Number"
+          },
+          "additionalStats": null
+        },
+        {
+          "platformInfo": {
+            "platformSlug": "origin",
+            "platformUserId": null,
+            "platformUserHandle": "behunter01",
+            "platformUserIdentifier": "1000376823393",
+            "avatarUrl": null,
+            "additionalParameters": {}
+          },
+          "userInfo": {
+            "userId": null,
+            "isPremium": false,
+            "isVerified": false,
+            "isInfluencer": false,
+            "isPartner": false,
+            "countryCode": null,
+            "customAvatarUrl": null,
+            "customHeroUrl": null,
+            "customAvatarFrame": null,
+            "customAvatarFrameInfo": null,
+            "premiumDuration": null,
+            "socialAccounts": null,
+            "badges": null,
+            "pageviews": null,
+            "xpTier": null,
+            "isSuspicious": null
+          },
+          "metadata": {},
+          "value": {
+            "value": 94,
+            "displayValue": "94.0%",
+            "displayType": "NumberPercentage"
+          },
+          "rank": {
+            "value": 3,
+            "displayValue": "3",
+            "displayType": "Number"
+          },
+          "additionalStats": null
+        },
+        {
+          "platformInfo": {
+            "platformSlug": "origin",
+            "platformUserId": null,
+            "platformUserHandle": "Pxivvv",
+            "platformUserIdentifier": "1018373458003",
+            "avatarUrl": null,
+            "additionalParameters": {}
+          },
+          "userInfo": {
+            "userId": null,
+            "isPremium": false,
+            "isVerified": false,
+            "isInfluencer": false,
+            "isPartner": false,
+            "countryCode": null,
+            "customAvatarUrl": null,
+            "customHeroUrl": null,
+            "customAvatarFrame": null,
+            "customAvatarFrameInfo": null,
+            "premiumDuration": null,
+            "socialAccounts": null,
+            "badges": null,
+            "pageviews": null,
+            "xpTier": null,
+            "isSuspicious": null
+          },
+          "metadata": {},
+          "value": {
+            "value": 92.86,
+            "displayValue": "92.9%",
+            "displayType": "NumberPercentage"
+          },
+          "rank": {
+            "value": 4,
+            "displayValue": "4",
+            "displayType": "Number"
+          },
+          "additionalStats": null
+        },
+        {
+          "platformInfo": {
+            "platformSlug": "origin",
+            "platformUserId": null,
+            "platformUserHandle": "Cordanz",
+            "platformUserIdentifier": "1004660379094",
+            "avatarUrl": null,
+            "additionalParameters": {}
+          },
+          "userInfo": {
+            "userId": null,
+            "isPremium": false,
+            "isVerified": false,
+            "isInfluencer": false,
+            "isPartner": false,
+            "countryCode": null,
+            "customAvatarUrl": null,
+            "customHeroUrl": null,
+            "customAvatarFrame": null,
+            "customAvatarFrameInfo": null,
+            "premiumDuration": null,
+            "socialAccounts": null,
+            "badges": null,
+            "pageviews": null,
+            "xpTier": null,
+            "isSuspicious": null
+          },
+          "metadata": {},
+          "value": {
+            "value": 92.26,
+            "displayValue": "92.3%",
+            "displayType": "NumberPercentage"
+          },
+          "rank": {
+            "value": 5,
+            "displayValue": "5",
+            "displayType": "Number"
+          },
+          "additionalStats": null
+        }
+      ],
+      "expiryDate": "2025-10-29T13:23:51.6743452+00:00"
+    },
+    "expiryDate": "0001-01-01T00:00:00+00:00",
+    "bestMatches": null
+  }
+}
