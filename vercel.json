@@ -3,7 +3,5 @@
     "app/api/**/*.ts": {
       "maxDuration": 30
     }
-  },
-  "buildCommand": "playwright install chromium && next build"
+  }
 }
-

@@ -1,10 +1,12 @@
-import { chromium, Browser, Page } from 'playwright';
+import { chromium as playwrightChromium, Browser, Page } from 'playwright-core';
+import chromium from '@sparticuz/chromium';
 
 let browser: Browser | null = null;
 let browserLaunchPromise: Promise<Browser> | null = null;
 
 /**
  * Get or create a browser instance (reused across requests for efficiency)
+ * Uses @sparticuz/chromium for serverless environments (Vercel, AWS Lambda, etc.)
  */
 async function getBrowser(): Promise<Browser> {
   if (browser) {
@@ -17,18 +19,21 @@ async function getBrowser(): Promise<Browser> {
 
   browserLaunchPromise = (async () => {
     try {
-      const browserInstance = await chromium.launch({
-        headless: true,
+      // Get Chromium executable path for serverless environments
+      const executablePath = await chromium.executablePath();
+
+      const browserInstance = await playwrightChromium.launch({
         args: [
+          ...chromium.args,
           '--disable-blink-features=AutomationControlled',
           '--disable-dev-shm-usage',
           '--no-sandbox',
           '--disable-setuid-sandbox',
           '--disable-gpu',
-          '--single-process', // Helps in some server environments
+          '--single-process',
         ],
-        // Set executable path explicitly if needed (useful for server deployments)
-        // executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,
+        executablePath,
+        headless: true,
       });
 
       // Clean up browser on process exit
@@ -40,14 +45,11 @@ async function getBrowser(): Promise<Browser> {
 
       return browserInstance;
     } catch (error: any) {
-      // If browser isn't installed, provide helpful error message
-      if (error.message?.includes('Executable doesn\'t exist') || error.message?.includes('executable')) {
-        throw new Error(
-          'Playwright Chromium browser is not installed. Please run: npx playwright install chromium\n' +
-          'If deploying, ensure your build process includes: playwright install chromium'
-        );
-      }
-      throw error;
+      console.error('Error launching browser:', error);
+      throw new Error(
+        `Failed to launch browser: ${error.message}\n` +
+        'Ensure @sparticuz/chromium is properly installed for serverless environments.'
+      );
     }
   })();
 
@@ -75,10 +77,10 @@ export async function browserFetch(
   });
 
   let page: Page | null = null;
-  
+
   try {
     page = await context.newPage();
-    
+
     // Set extra headers
     if (options.headers) {
       await page.setExtraHTTPHeaders(options.headers);
