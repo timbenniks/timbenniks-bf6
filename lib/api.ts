@@ -1,5 +1,6 @@
-// API endpoints configuration - using Next.js API routes to avoid CORS issues
-const API_BASE = '/api';
+// API endpoints configuration - direct client-side calls to tracker.gg API
+const API_BASE = 'https://api.tracker.gg/api/v2/bf6/standard';
+const UPDATE_HASH = '4B52B92031F7E041534F8A85C814734F';
 // Default player ID - used as fallback if no playerId is provided
 const DEFAULT_PLAYER_ID = '1009202439087';
 
@@ -253,23 +254,42 @@ export interface ProfileData {
   };
 }
 
-// Client-side API functions
+// Client-side API functions - direct calls to tracker.gg API
 export async function fetchMatches(playerId?: string, platform: string = 'origin'): Promise<MatchData> {
   const id = playerId || DEFAULT_PLAYER_ID;
-  const response = await fetch(
-    `${API_BASE}/matches?playerId=${id}&platform=${platform}`,
-    {
-      method: 'GET',
-      credentials: 'include', // Include cookies in the request
-      headers: {
-        'Accept': 'application/json',
-      },
-    }
-  );
+
+  // Map xbl to xbox for matches endpoint
+  const platformEndpoint = platform === 'xbl' ? 'xbox' : platform;
+  const url = `${API_BASE}/matches/${platformEndpoint}/${id}?updateHash=${UPDATE_HASH}`;
+
+  const response = await fetch(url, {
+    method: 'GET',
+    credentials: 'include', // Include cookies in the request
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Accept-Language': 'en-US,en;q=0.9',
+      'Referer': 'https://tracker.gg/',
+      'Cache-Control': 'no-cache',
+      'Pragma': 'no-cache',
+    },
+  }).catch((fetchError) => {
+    // Handle network errors (CORS, network failures, etc.)
+    throw new Error(`Network error: ${fetchError.message}. This may be a CORS issue. Make sure you're accessing from a browser with cookies enabled.`);
+  });
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ error: response.statusText }));
-    throw new Error(error.error || `Failed to fetch matches: ${response.statusText}`);
+    const errorText = await response.text().catch(() => response.statusText);
+    let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+    try {
+      const errorJson = JSON.parse(errorText);
+      errorMessage = errorJson.error || errorJson.message || errorMessage;
+    } catch {
+      // If not JSON, use the text or status text
+      if (errorText && errorText !== response.statusText) {
+        errorMessage = errorText;
+      }
+    }
+    throw new Error(`Failed to fetch matches: ${errorMessage}`);
   }
 
   return response.json();
@@ -277,20 +297,40 @@ export async function fetchMatches(playerId?: string, platform: string = 'origin
 
 export async function fetchProfile(playerId?: string, platform: string = 'origin'): Promise<ProfileData> {
   const id = playerId || DEFAULT_PLAYER_ID;
-  const response = await fetch(
-    `${API_BASE}/profile?playerId=${id}&platform=${platform}`,
-    {
-      method: 'GET',
-      credentials: 'include', // Include cookies in the request
-      headers: {
-        'Accept': 'application/json',
-      },
-    }
-  );
+
+  // Map platform slug to API endpoint format
+  // xbl -> xbox, psn -> psn, steam -> steam, origin -> ign
+  const platformEndpoint = platform === 'xbl' ? 'xbox' : platform === 'psn' ? 'psn' : platform === 'steam' ? 'steam' : 'ign';
+  const url = `${API_BASE}/profile/${platformEndpoint}/${id}`;
+
+  const response = await fetch(url, {
+    method: 'GET',
+    credentials: 'include', // Include cookies in the request
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Accept-Language': 'en-US,en;q=0.9',
+      'Referer': 'https://tracker.gg/',
+      'Cache-Control': 'no-cache',
+      'Pragma': 'no-cache',
+    },
+  }).catch((fetchError) => {
+    // Handle network errors (CORS, network failures, etc.)
+    throw new Error(`Network error: ${fetchError.message}. This may be a CORS issue. Make sure you're accessing from a browser with cookies enabled.`);
+  });
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ error: response.statusText }));
-    throw new Error(error.error || `Failed to fetch profile: ${response.statusText}`);
+    const errorText = await response.text().catch(() => response.statusText);
+    let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+    try {
+      const errorJson = JSON.parse(errorText);
+      errorMessage = errorJson.error || errorJson.message || errorMessage;
+    } catch {
+      // If not JSON, use the text or status text
+      if (errorText && errorText !== response.statusText) {
+        errorMessage = errorText;
+      }
+    }
+    throw new Error(`Failed to fetch profile: ${errorMessage}`);
   }
 
   return response.json();
@@ -298,20 +338,39 @@ export async function fetchProfile(playerId?: string, platform: string = 'origin
 
 export async function fetchWLPercentage(playerId?: string, platform: string = 'origin'): Promise<WLPercentageData> {
   const id = playerId || DEFAULT_PLAYER_ID;
-  const response = await fetch(
-    `${API_BASE}/wlpercentage?playerId=${id}&platform=${platform}`,
-    {
-      method: 'GET',
-      credentials: 'include', // Include cookies in the request
-      headers: {
-        'Accept': 'application/json',
-      },
-    }
-  );
+
+  // Map xbl to xbox for stats endpoints
+  const platformEndpoint = platform === 'xbl' ? 'xbox' : platform;
+  const url = `${API_BASE}/profile/${platformEndpoint}/${id}/stats/overview/wlPercentage`;
+
+  const response = await fetch(url, {
+    method: 'GET',
+    credentials: 'include', // Include cookies in the request
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Accept-Language': 'en-US,en;q=0.9',
+      'Referer': 'https://tracker.gg/',
+      'Cache-Control': 'no-cache',
+      'Pragma': 'no-cache',
+    },
+  }).catch((fetchError) => {
+    // Handle network errors (CORS, network failures, etc.)
+    throw new Error(`Network error: ${fetchError.message}. This may be a CORS issue. Make sure you're accessing from a browser with cookies enabled.`);
+  });
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ error: response.statusText }));
-    throw new Error(error.error || `Failed to fetch win/loss percentage: ${response.statusText}`);
+    const errorText = await response.text().catch(() => response.statusText);
+    let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+    try {
+      const errorJson = JSON.parse(errorText);
+      errorMessage = errorJson.error || errorJson.message || errorMessage;
+    } catch {
+      // If not JSON, use the text or status text
+      if (errorText && errorText !== response.statusText) {
+        errorMessage = errorText;
+      }
+    }
+    throw new Error(`Failed to fetch win/loss percentage: ${errorMessage}`);
   }
 
   return response.json();
@@ -319,20 +378,39 @@ export async function fetchWLPercentage(playerId?: string, platform: string = 'o
 
 export async function fetchKDRatio(playerId?: string, platform: string = 'origin'): Promise<KDRatioData> {
   const id = playerId || DEFAULT_PLAYER_ID;
-  const response = await fetch(
-    `${API_BASE}/kdratio?playerId=${id}&platform=${platform}`,
-    {
-      method: 'GET',
-      credentials: 'include', // Include cookies in the request
-      headers: {
-        'Accept': 'application/json',
-      },
-    }
-  );
+
+  // Map xbl to xbox for stats endpoints
+  const platformEndpoint = platform === 'xbl' ? 'xbox' : platform;
+  const url = `${API_BASE}/profile/${platformEndpoint}/${id}/stats/overview/kdRatio`;
+
+  const response = await fetch(url, {
+    method: 'GET',
+    credentials: 'include', // Include cookies in the request
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Accept-Language': 'en-US,en;q=0.9',
+      'Referer': 'https://tracker.gg/',
+      'Cache-Control': 'no-cache',
+      'Pragma': 'no-cache',
+    },
+  }).catch((fetchError) => {
+    // Handle network errors (CORS, network failures, etc.)
+    throw new Error(`Network error: ${fetchError.message}. This may be a CORS issue. Make sure you're accessing from a browser with cookies enabled.`);
+  });
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ error: response.statusText }));
-    throw new Error(error.error || `Failed to fetch K/D ratio: ${response.statusText}`);
+    const errorText = await response.text().catch(() => response.statusText);
+    let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+    try {
+      const errorJson = JSON.parse(errorText);
+      errorMessage = errorJson.error || errorJson.message || errorMessage;
+    } catch {
+      // If not JSON, use the text or status text
+      if (errorText && errorText !== response.statusText) {
+        errorMessage = errorText;
+      }
+    }
+    throw new Error(`Failed to fetch K/D ratio: ${errorMessage}`);
   }
 
   return response.json();

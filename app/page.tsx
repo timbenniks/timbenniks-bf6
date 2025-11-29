@@ -116,9 +116,9 @@ function DashboardContent() {
           </h1>
           <p className="text-gray-400 mb-4">{error}</p>
           <p className="text-sm text-gray-500">
-            Make sure you're accessing this page from a browser with proper
-            cookies enabled. The API requires browser authentication to bypass
-            Cloudflare protection.
+            Make sure you're accessing this page from a browser with cookies enabled.
+            If you see a CORS error, the API may not allow direct cross-origin requests.
+            Check the browser console for more details.
           </p>
           <button
             onClick={() => window.location.reload()}
